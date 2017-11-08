@@ -1,0 +1,22 @@
+{
+  "name": "JWT authentication",
+  "version": "0.0.0",
+  "authors": [
+    ""
+  ],
+  "description": "JWT authentication",
+  "keywords": [
+    "angularjs",
+    "jwt",
+    "authentication"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

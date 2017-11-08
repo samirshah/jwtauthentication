@@ -1,0 +1,27 @@
+{
+  "name": "JWTAuthentication",
+  "version": "0.0.0",
+  "description": "JWT authentication",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "keywords": [
+    "angularjs",
+    "jwt",
+    "authentication"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "faker": "^1.1.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.8.3",
+    "cors": "^2.4.2",
+    "express": "^4.9.4",
+    "express-jwt": "^0.3.2",
+    "jsonwebtoken": "^1.1.2"
+  }
+}
