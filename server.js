@@ -34,8 +34,8 @@ app.post('/login', authenticate, function (req, res) {
 });
 
 
-app.listen(8080, function () {
-    console.log('App listening on localhost:8080');
+app.listen(3000, function () {
+    console.log('App listening on localhost:3000');
 });
 
 // UTIL FUNCTIONS

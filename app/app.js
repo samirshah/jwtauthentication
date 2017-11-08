@@ -4,7 +4,7 @@
         $httpProvider.interceptors.push('AuthInterceptor');
     });
 
-    app.constant('API_URL', 'https://mysterious-island-10457.herokuapp.com:8080');
+    app.constant('API_URL', 'https://mysterious-island-10457.herokuapp.com:3000');
 
     app.controller('MainCtrl', function MainCtrl(RandomUserFactory, UserFactory) {
         'use strict';
