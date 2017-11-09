@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 app.use(expressJwt({
     secret: jwtSecret
 }).unless({
-    path: ['/login', '/unauthorized']
+    path: ['/login', '/unauthorized', 'refresh']
 }));
 
 
@@ -51,6 +51,40 @@ appRouter.post('/login', authenticate, function (req, res) {
             "expiresIn": 1800,
             "refreshExpiresIn": 3600,
             "refreshToken": refreshToken,
+            "tokenType": "bearer",
+            "sessionState": "2ac48b88-cfbb-46ee-8bfa-03f2eb5bfa4b",
+            "primaryAuth": true
+        }
+    }];
+
+    res.send({
+        success: "true",
+        payload: payload
+    });
+});
+
+appRouter.post('/refresh', authenticate, function (req, res) {
+    var userId = '12345';
+    var accessToken = jwt.sign({
+        username: user.username
+    }, jwtSecret);
+
+    var timeStampInMs = Date.now();
+    timeStampInMs += 900000;
+
+    var timeStampInMsRefreshToken = Date.now();
+    timeStampInMsRefreshToken += 1800000;
+
+    console.log(timeStampInMs);
+    console.log(timeStampInMsRefreshToken);
+
+    var payload = [{
+        "userId": userId,
+        "tokens": {
+            "accessToken": accessToken,
+            "expiresIn": 1800,
+            "refreshExpiresIn": 3600,
+            "refreshToken": req.refreshToken,
             "tokenType": "bearer",
             "sessionState": "2ac48b88-cfbb-46ee-8bfa-03f2eb5bfa4b",
             "primaryAuth": true
