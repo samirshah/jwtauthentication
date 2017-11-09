@@ -5,6 +5,7 @@ var jwt = require('jsonwebtoken');
 var expressJwt = require('express-jwt');
 
 var jwtSecret = 'fjkdlsajfoew239053/3uk';
+var jwtRefreshSecret = 'kjahsduibdsash8783/9ok';
 
 var user = {
     username: 'test@test.com',
@@ -25,24 +26,34 @@ app.use(expressJwt({
 
 
 appRouter.post('/login', authenticate, function (req, res) {
-    var token = jwt.sign({
+    var accessToken = jwt.sign({
         username: user.username
     }, jwtSecret);
+    var refreshToken = jwt.sign({
+        username: user.username
+    }, jwtRefreshSecret);
+
     var timeStampInMs = Date.now();
     timeStampInMs += 900000;
 
+    var timeStampInMsRefreshToken = Date.now();
+    timeStampInMsRefreshToken += 1800000;
+
     console.log(timeStampInMs);
+    console.log(timeStampInMsRefreshToken);
+
     res.send({
-        token: token,
-        exp: timeStampInMs,
+        accessToken: accessToken,
+        refreshToken: refreshToken,
+        expiresIn: timeStampInMs,
+        refreshExpiresIn: timeStampInMsRefreshToken,
         user: user
     });
 });
 
 appRouter.get('/unauthorized', function (req, res) {
-    var stat = '401 unauthorized'
     res.json({
-        status: stat
+        status: '401 unauthorized'
     });
 });
 
