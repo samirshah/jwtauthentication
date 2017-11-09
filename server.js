@@ -12,6 +12,7 @@ var user = {
 };
 
 var app = express();
+var appRouter = express.Router();
 
 app.use(cors());
 app.use(express.static(__dirname + '/app'));
@@ -23,7 +24,7 @@ app.use(expressJwt({
 }));
 
 
-app.post('/login', authenticate, function (req, res) {
+appRouter.post('/login', authenticate, function (req, res) {
     var token = jwt.sign({
         username: user.username
     }, jwtSecret);
@@ -38,13 +39,14 @@ app.post('/login', authenticate, function (req, res) {
     });
 });
 
-app.get('/unauthorized', function (req, res) {
+appRouter.get('/unauthorized', function (req, res) {
     var stat = '401 unauthorized'
     res.send({
         status: stat
     });
 });
 
+app.use('/', appRouter);
 
 app.listen(process.env.PORT || 3000, function () {
     console.log('App listening on localhost:3000');
