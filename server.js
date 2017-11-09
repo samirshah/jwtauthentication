@@ -41,7 +41,7 @@ appRouter.post('/login', authenticate, function (req, res) {
 
 appRouter.get('/unauthorized', function (req, res) {
     var stat = '401 unauthorized'
-    res.send({
+    res.json({
         status: stat
     });
 });
