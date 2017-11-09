@@ -19,11 +19,11 @@ app.use(cors());
 app.use(express.static(__dirname + '/app'));
 app.use(bodyParser.json());
 
-//app.use(expressJwt({
-//    secret: jwtSecret
-//}).unless({
-//    path: ['/login']
-//}));
+app.use(expressJwt({
+    secret: jwtSecret
+}).unless({
+    path: ['/login', '/unauthorized']
+}));
 
 
 appRouter.post('/login', authenticate, function (req, res) {
