@@ -38,6 +38,13 @@ app.post('/login', authenticate, function (req, res) {
     });
 });
 
+app.get('/unauthorized', function (req, res) {
+    var stat = '401 unauthorized'
+    res.send({
+        status: stat
+    });
+});
+
 
 app.listen(process.env.PORT || 3000, function () {
     console.log('App listening on localhost:3000');
