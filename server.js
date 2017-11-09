@@ -27,6 +27,7 @@ app.use(expressJwt({
 
 
 appRouter.post('/login', authenticate, function (req, res) {
+    var userId = '12345';
     var accessToken = jwt.sign({
         username: user.username
     }, jwtSecret);
@@ -43,12 +44,26 @@ appRouter.post('/login', authenticate, function (req, res) {
     console.log(timeStampInMs);
     console.log(timeStampInMsRefreshToken);
 
+    var payload = [{
+        "userId": userId,
+        "tokens": {
+            "accessToken": accessToken,
+            "expiresIn": 1800,
+            "refreshExpiresIn": 3600,
+            "refreshToken": refreshToken,
+            "tokenType": "bearer",
+            "sessionState": "2ac48b88-cfbb-46ee-8bfa-03f2eb5bfa4b",
+            "primaryAuth": true
+        }
+    }];
+
+    var obj = {
+        success: "true",
+        payload: payload
+    };
+
     res.send({
-        accessToken: accessToken,
-        refreshToken: refreshToken,
-        expiresIn: timeStampInMs,
-        refreshExpiresIn: timeStampInMsRefreshToken,
-        user: user
+        obj
     });
 });
 
