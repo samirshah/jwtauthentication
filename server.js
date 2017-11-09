@@ -27,8 +27,13 @@ app.post('/login', authenticate, function (req, res) {
     var token = jwt.sign({
         username: user.username
     }, jwtSecret);
+    var timeStampInMs = Date.now();
+    timeStampInMs += 900000;
+
+    console.log(timeStampInMs);
     res.send({
         token: token,
+        exp: timeStampInMs,
         user: user
     });
 });
