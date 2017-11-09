@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 app.use(expressJwt({
     secret: jwtSecret
 }).unless({
-    path: ['/login', '/unauthorized', 'refresh']
+    path: ['/login', '/unauthorized', '/refresh']
 }));
 
 
