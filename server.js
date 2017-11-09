@@ -74,7 +74,7 @@ appRouter.post('/refresh', authenticate, function (req, res) {
 
     var timeStampInMsRefreshToken = Date.now();
     timeStampInMsRefreshToken += 1800000;
-
+    console.log(req);
     console.log(timeStampInMs);
     console.log(timeStampInMsRefreshToken);
 
