@@ -57,13 +57,9 @@ appRouter.post('/login', authenticate, function (req, res) {
         }
     }];
 
-    var obj = {
+    res.send({
         success: "true",
         payload: payload
-    };
-
-    res.send({
-        obj
     });
 });
 
