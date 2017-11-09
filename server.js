@@ -84,7 +84,7 @@ appRouter.post('/refresh', authenticate, function (req, res) {
             "accessToken": accessToken,
             "expiresIn": 1800,
             "refreshExpiresIn": 3600,
-            "refreshToken": req.refreshToken,
+            "refreshToken": req.body.refreshToken,
             "tokenType": "bearer",
             "sessionState": "2ac48b88-cfbb-46ee-8bfa-03f2eb5bfa4b",
             "primaryAuth": true
