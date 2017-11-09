@@ -7,7 +7,7 @@ var expressJwt = require('express-jwt');
 var jwtSecret = 'fjkdlsajfoew239053/3uk';
 
 var user = {
-    username: 'samirshah@deloitte.com',
+    username: 'test@test.com',
     password: 'Test@123'
 };
 
