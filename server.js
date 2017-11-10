@@ -124,11 +124,11 @@ function authenticate(req, res, next) {
 
 function refreshAuthenticate(req, res, next) {
     var body = req.body;
-    if (!body.username || !body.password) {
+    if (!body.username || !body.password || !body.refreshToken) {
         res.status(400).end('Must provide username or password');
     } else if (body.username !== user.username || body.password !== user.password) {
         res.status(401).end('Username or password incorrect');
-    } else if (body.username !== user.username || body.password !== user.password || body.refreshToken == undefined || body.refreshToken == string.empty) {
+    } else if (body.username !== user.username || body.password !== user.password) {
         res.status(401).end('refresh token invalid');
     } else {
         next();
