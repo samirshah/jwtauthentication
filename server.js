@@ -48,8 +48,8 @@ appRouter.post('/login', authenticate, function (req, res) {
         "userId": userId,
         "tokens": {
             "accessToken": accessToken,
-            "expiresIn": 1800,
-            "refreshExpiresIn": 3600,
+            "expiresIn": 180,
+            "refreshExpiresIn": 360,
             "refreshToken": refreshToken,
             "tokenType": "bearer",
             "sessionState": "2ac48b88-cfbb-46ee-8bfa-03f2eb5bfa4b",
@@ -82,8 +82,8 @@ appRouter.post('/refresh', authenticate, function (req, res) {
         "userId": userId,
         "tokens": {
             "accessToken": accessToken,
-            "expiresIn": 1800,
-            "refreshExpiresIn": 3600,
+            "expiresIn": 180,
+            "refreshExpiresIn": 360,
             "refreshToken": req.body.refreshToken,
             "tokenType": "bearer",
             "sessionState": "2ac48b88-cfbb-46ee-8bfa-03f2eb5bfa4b",
