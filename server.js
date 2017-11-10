@@ -63,7 +63,7 @@ appRouter.post('/login', authenticate, function (req, res) {
     });
 });
 
-appRouter.post('/refresh', authenticate, function (req, res) {
+appRouter.post('/refresh', refreshAuthenticate, function (req, res) {
     var userId = '12345';
     var accessToken = jwt.sign({
         username: user.username
@@ -117,6 +117,19 @@ function authenticate(req, res, next) {
         res.status(400).end('Must provide username or password');
     } else if (body.username !== user.username || body.password !== user.password) {
         res.status(401).end('Username or password incorrect');
+    } else {
+        next();
+    }
+}
+
+function refreshAuthenticate(req, res, next) {
+    var body = req.body;
+    if (!body.username || !body.password) {
+        res.status(400).end('Must provide username or password');
+    } else if (body.username !== user.username || body.password !== user.password) {
+        res.status(401).end('Username or password incorrect');
+    } else if (body.username !== user.username || body.password !== user.password || body.refreshToken == undefined || body.refreshToken == string.empty) {
+        res.status(401).end('refresh token invalid');
     } else {
         next();
     }
